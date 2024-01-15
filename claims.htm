@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claims</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+
+    section {
+      margin: 20px;
+    }
+
+    .category {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    label {
+      display: block;
+      padding: 10px;
+      margin-bottom: 5px;
+      background: linear-gradient(45deg, #e6f7ff, #ccf2ff);
+      border-radius: 5px;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    button {
+      display: block;
+      margin-top: 20px;
+      padding: 15px;
+      font-size: 28px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Check each claim that you believe is true or very likely true.</h1>
+	<h1>If you just have no idea, just leave it unchecked.</h1>
+	<h1>To count the number you checked, please click the button at the bottom.</h1>
+    <h2>NOTE: This page does not record your activity!</h2>
+  </header>
+  <section id="claimsSection">
+    <!-- Claims will be added dynamically using JavaScript -->
+  </section>
+
+  <button onclick="calculateTotal()">Sum total</button>
+
+  <script>
+    var claimsByCategory = {
+      "Christianity": [
+        "God truly exists eternally as a trinity: The Father, The Son (Jesus Christ), and Holy Spirit.",
+        "The miracle resurrection of Jesus really happened.",
+        "Belief in Jesus Christ as the Son of God and acceptance of his atonement on the cross are the means by which we can attain salvation and eternal life in heaven."
+      ],
+      "Islam": [
+        "The Quran is the literal word of the one God (Allah), revealed to the Prophet Muhammad over a period of 23 years through the archangel Gabriel.",
+        "Allah has full knowledge and control over all events, and everything happens according to His divine plan.",
+        "Muhammad prayed to Allah to split the moon into two halves to prove his prophethood and this miracle actually happened."
+      ],
+      "Hinduism": [
+        "Individuals undergo a cycle of birth, death, and rebirth, known as Samsara, based on their karma. Your soul transmigrates from one body to another.",
+        "Performing good deeds can liberate your soul from the cycle of reincarnation, causing your soul to experience eternal bliss and transcend the limitations of the material world.",
+        "Lord Hanuman, an avatar of Lord Shiva, is real and divine, depicted as a monkey or an anthropomorphic monkey man, and exhibits extraordinary powers.",
+      ],
+      "Judaism": [
+         "Moses received directly from God the Ten Commandments on Mount Sinai.",
+         "The Ark of the Covenant had supernatural powers, miraculously stopping the flow of the Jordan River allowing the Israelites to cross on dry ground.",
+         "God performed a miracle and parted the Red Sea which allowed the Israelites to escape from Egypt.",
+      ],		  
+      "Buddhism": [
+         "The Buddha really possessed telepathic abilities, allowing him to read the minds and thoughts of others.",
+         "Buddha's relics have supernatural powers, radiate positive energy, and have the ability to grant blessings.",
+         "Bodhisattvas really possess transcendent powers, such as the ability to manifest in multiple forms, traverse different realms, and perform miraculous acts for the benefit of sentient beings.",
+      ],	
+      "General religiosity": [
+		 "Souls are real and continue beyond physical death.",
+		 "Heaven really exists.",
+		 "Hell, whether a fiery punishment or separation from God, is real.",
+		 "Divine miracles are real and happen on occasion.",
+		 "The universe, life, and humanity were thoughtfully and intentionally created by a divine transcendent force.",
+		 "The universe was created by God expressly for humans",		 
+		 "God has definitively revealed himself to some human beings.",
+		 "God loves us, and we are special.",
+		 "A final judgement by God will occur and will decide the fate of your soul.",
+		 "Karma is real.",
+		 "Reincarnation is real.",
+	  ],
+	  "General claims": [
+	     "Ghosts are real.",
+         "Telekinesis, the ability to move or manipulate objects with the mind, is a real phenomenon.",	
+		 "Psychic powers, such as clairvoyance and telepathy, really exists in some individuals.",
+         "ESP (Extrasensory Perception), the ability to receive information without using the known senses is real.",	
+         "Near-Death Experiences (NDEs) are real and have proven the existence of an afterlife.",		 
+		 "Intelligent extraterrestrial aliens have visited Earth.",
+         "Crop circles are created by extraterrestrial beings or advanced technologies.",
+         "Bigfoot, also known as Sasquatch, existed in North American forests.",
+         "The Loch Ness Monster, a mythical creature, lives in the Loch Ness in Scotland.",		 
+		 "The Illuminati, a secret society, controls world events and governments.",
+         "The moon landing was a hoax, and humans never set foot on the moon.",
+		 "The Covid vaccine is fake and was created to control the masses.",
+		 "Global warming is a hoax.",
+         "The Earth is flat.",		 
+       ]  
+    };
+
+    var claimsSection = document.getElementById("claimsSection");
+
+    for (var category in claimsByCategory) {
+      if (claimsByCategory.hasOwnProperty(category)) {
+        // Add category heading
+        var categoryHeading = document.createElement("div");
+        categoryHeading.className = "category";
+        categoryHeading.textContent = category;
+        claimsSection.appendChild(categoryHeading);
+
+        // Add claims for the category
+        claimsByCategory[category].forEach(function (claim, index) {
+          var label = document.createElement("label");
+          label.innerHTML = '<input type="checkbox" id="claim' + index + '"> ' + claim;
+          claimsSection.appendChild(label);
+        });
+      }
+    }
+
+    function calculateTotal() {
+      var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      var totalChecked = 0;
+
+      checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+          totalChecked++;
+        }
+      });
+
+      alert('Total checked = ' + totalChecked);
+    }
+  </script>
+</body>
+</html>
